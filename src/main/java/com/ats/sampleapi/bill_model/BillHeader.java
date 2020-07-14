@@ -1,10 +1,14 @@
 package com.ats.sampleapi.bill_model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -18,7 +22,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class BillHeader {
 
 	@Id
-	private Integer billId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int billId;
 	private String invoiceNo;
 	private Integer custId;
 	
@@ -34,13 +39,24 @@ public class BillHeader {
 	private Integer delStatus;
 	
 	private String exVar1;
-	private Integer exInt1;
+	private int exInt1;
+	
+	@Transient 
+	List<BillDetail> billDetailList;
 	
 	
-	public Integer getBillId() {
+	
+	
+	public List<BillDetail> getBillDetailList() {
+		return billDetailList;
+	}
+	public void setBillDetailList(List<BillDetail> billDetailList) {
+		this.billDetailList = billDetailList;
+	}
+	public int getBillId() {
 		return billId;
 	}
-	public void setBillId(Integer billId) {
+	public void setBillId(int billId) {
 		this.billId = billId;
 	}
 	public String getInvoiceNo() {
@@ -108,19 +124,20 @@ public class BillHeader {
 	public void setExVar1(String exVar1) {
 		this.exVar1 = exVar1;
 	}
-	public Integer getExInt1() {
+	public int getExInt1() {
 		return exInt1;
 	}
-	public void setExInt1(Integer exInt1) {
+	public void setExInt1(int exInt1) {
 		this.exInt1 = exInt1;
 	}
-	
 	@Override
 	public String toString() {
 		return "BillHeader [billId=" + billId + ", invoiceNo=" + invoiceNo + ", custId=" + custId + ", billDate="
 				+ billDate + ", billDttime=" + billDttime + ", billUpdateDttime=" + billUpdateDttime + ", billAmt="
 				+ billAmt + ", makerUserId=" + makerUserId + ", makerDttime=" + makerDttime + ", delStatus=" + delStatus
-				+ ", exVar1=" + exVar1 + ", exInt1=" + exInt1 + "]";
+				+ ", exVar1=" + exVar1 + ", exInt1=" + exInt1 + ", billDetailList=" + billDetailList + "]";
 	}
+	
+	
 	
 }

@@ -2,6 +2,7 @@ package com.ats.sampleapi.cust_model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ import javax.persistence.Table;
 public class Customer {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer custId;
 	
 	private String custName;
@@ -92,6 +94,5 @@ public class Customer {
 				+ creditDays + ", exVar1=" + exVar1 + ", exInt1=" + exInt1 + ", makerUserId=" + makerUserId
 				+ ", makerDttime=" + makerDttime + ", delStatus=" + delStatus + ", isActive=" + isActive + "]";
 	}
-	
 	
 }

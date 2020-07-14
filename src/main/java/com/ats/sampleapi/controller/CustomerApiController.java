@@ -156,6 +156,36 @@ public class CustomerApiController {
 		
 	}
 	
+	
+	@RequestMapping(value = { "/activeInActiveCustomerById" }, method = RequestMethod.POST)
+	public @ResponseBody Object activeInActiveCustomerById(@RequestParam Integer custId,@RequestParam int isActive, 
+			@RequestParam Integer makerUserId,@RequestParam String makerDttime) {
+
+		Info info = new Info();
+		int delete=0;
+		
+		try {
+			
+			delete=custRepo.activeInActiveCustomer(custId, isActive, makerUserId, makerDttime);
+			
+			if(delete>0) {
+				info.setError(false);
+				info.setMsg("Record updated successfully");
+			}else {
+				info.setError(true);
+				info.setMsg("Record not deleted");
+			}
+			
+		}catch (Exception e) {
+			info.setError(true);
+			info.setMsg("Exception Occurred- Data not updated");
+		}
+		
+		return info;
+		
+	}
+	
+	
 	@RequestMapping(value = { "/getCustomerByCustId" }, method = RequestMethod.POST)
 	public @ResponseBody Object getCustomerByCustId(@RequestParam Integer custId) {
 

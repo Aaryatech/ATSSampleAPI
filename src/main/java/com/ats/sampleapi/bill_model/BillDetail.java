@@ -1,6 +1,8 @@
 package com.ats.sampleapi.bill_model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,8 +16,9 @@ import javax.persistence.Table;
 public class BillDetail {
 
 	@Id
-	private Integer billDetailId;
-	private Integer billId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int billDetailId;
+	private int billId;
 	private String detailDttime;
 	
 	private Integer totalAmt;
@@ -26,19 +29,19 @@ public class BillDetail {
 	
 	private int delStatus;
 
-	public Integer getBillDetailId() {
+	public int getBillDetailId() {
 		return billDetailId;
 	}
 
-	public void setBillDetailId(Integer billDetailId) {
+	public void setBillDetailId(int billDetailId) {
 		this.billDetailId = billDetailId;
 	}
 
-	public Integer getBillId() {
+	public int getBillId() {
 		return billId;
 	}
 
-	public void setBillId(Integer billId) {
+	public void setBillId(int billId) {
 		this.billId = billId;
 	}
 

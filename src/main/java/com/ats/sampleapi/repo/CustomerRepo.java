@@ -28,6 +28,15 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 			+ "", nativeQuery = true)
 	int deleteCustomer(@Param("custId") Integer custId,@Param("makerUserId") Integer makerUserId,@Param("makerDttime") String makerDttime);
 
+	
+	@Transactional
+	@Modifying
+	@Query(value = " UPDATE m_customer SET is_active=:isActive, maker_dttime=:makerDttime, maker_user_id=:makerUserId "
+			+ "WHERE cust_id=:custId"
+			+ "", nativeQuery = true)
+	int activeInActiveCustomer(@Param("custId") Integer custId,@Param("isActive") int isActive,@Param("makerUserId") Integer makerUserId,@Param("makerDttime") String makerDttime);
+
+	
 	Customer findByCustId(int custId);
 	
 }
