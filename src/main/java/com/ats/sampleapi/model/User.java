@@ -25,6 +25,12 @@ public class User {
 	private String userEmail;
 	
 	private int isEnrolled;
+	
+	private int makerUserId;
+    private String makerDttime;
+    
+    private int delStatus;
+    
 
 	public int getUserId() {
 		return userId;
@@ -82,26 +88,35 @@ public class User {
 		this.isEnrolled = isEnrolled;
 	}
 
-	public User(int userId, String userMobNo) {
-	
-		this.userId = userId;
-		this.userMobNo = userMobNo;
+	public int getMakerUserId() {
+		return makerUserId;
 	}
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setMakerUserId(int makerUserId) {
+		this.makerUserId = makerUserId;
+	}
+
+	public String getMakerDttime() {
+		return makerDttime;
+	}
+
+	public void setMakerDttime(String makerDttime) {
+		this.makerDttime = makerDttime;
+	}
+
+	public int getDelStatus() {
+		return delStatus;
+	}
+
+	public void setDelStatus(int delStatus) {
+		this.delStatus = delStatus;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", userPass=" + userPass + ", empId=" + empId
-				+ ", userMobNo=" + userMobNo + ", userEmail=" + userEmail + ", isEnrolled=" + isEnrolled + "]";
+				+ ", userMobNo=" + userMobNo + ", userEmail=" + userEmail + ", isEnrolled=" + isEnrolled
+				+ ", makerUserId=" + makerUserId + ", makerDttime=" + makerDttime + ", delStatus=" + delStatus + "]";
 	}
-	
-	
-	
 
-	
-	
 }
