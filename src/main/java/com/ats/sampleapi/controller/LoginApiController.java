@@ -80,11 +80,9 @@ public class LoginApiController {
 
 	}
 	
-	// Author-Sachin Handge
-		// Created On-15-07-2020
-		// Modified By-Sachin Handge
-		// Modified On-15-07-2020
-		// Desc- Check Username for forgot/change password page ie accept user name and return it if available.
+	// Author-Sachin Handge   Created On-15-07-2020
+	// Modified By-Sachin Handge  Modified On-16-07-2020
+	// Desc- Check Username for forgot/change password page ie accept user name and return it if available.
 	
 	@RequestMapping(value = { "/checkUserNameForgotPass" }, method = RequestMethod.POST)
 	public @ResponseBody Object checkUserNameForgotPass(@RequestParam String userName) {
@@ -96,9 +94,9 @@ public class LoginApiController {
 			// Check if user name exists
 			userId = userRepo.getUserId(userName.trim());
 
-			if (userId > 0) {
+			if (userId!=null) {
 				try {
-					loginUser = userRepo.getOne(userId);
+					loginUser = userRepo.findByUserId(userId);
 				} catch (Exception e) {
 					info.setError(true);
 				}
@@ -106,7 +104,7 @@ public class LoginApiController {
 				if(loginUser!=null) {
 
 						info.setError(false);
-						info.setMsg("User name found ");
+						info.setMsg("Invalid username");
 						info.setResponseObject1(CommonUtility.toJSONString(loginUser));
 						
 						return info;
